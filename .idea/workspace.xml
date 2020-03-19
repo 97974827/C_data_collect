@@ -11,7 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea938721-d725-49e9-ab64-6e148b975785" name="Default Changelist" comment="" />
+    <list default="true" id="ea938721-d725-49e9-ab64-6e148b975785" name="Default Changelist" comment="Serial First Commit">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/device.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/device.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +25,16 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="97974827 &lt;55374340+97974827@users.noreply.github.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Z10Eg17jkQGIALsIGRLFdFfoIQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -29,6 +42,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
@@ -72,7 +86,8 @@
       <workItem from="1584328634421" duration="23274000" />
       <workItem from="1584403301010" duration="19440000" />
       <workItem from="1584490330175" duration="26000" />
-      <workItem from="1584490413160" duration="22140000" />
+      <workItem from="1584490413160" duration="22575000" />
+      <workItem from="1584577528832" duration="18852000" />
     </task>
     <servers />
   </component>
@@ -88,6 +103,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="526" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1583991696018" />
+    <state x="538" y="117" key="CommitChangelistDialog2" timestamp="1584522295702">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="538" y="117" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584522295702" />
     <state width="1730" height="341" key="GridCell.Tab.0.bottom" timestamp="1583994426172">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -120,18 +139,18 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="1730" height="341" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1583994426172" />
-    <state x="641" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1584490468482">
+    <state x="641" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1584577529457">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="641" y="345" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584490468482" />
+    <state x="641" y="345" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584577529457" />
     <state x="955" y="251" key="ftp.server.browser" timestamp="1583992011897">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="955" y="251" key="ftp.server.browser/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1583992011897" />
-    <state x="942" y="414" key="publish.login" timestamp="1584490520415">
+    <state x="942" y="414" key="publish.login" timestamp="1584577801937">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="942" y="414" key="publish.login/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584490520415" />
+    <state x="942" y="414" key="publish.login/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584577801937" />
     <state x="728" y="243" key="run.anything.popup" timestamp="1584420060176">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

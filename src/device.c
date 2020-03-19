@@ -44,8 +44,14 @@ void getDeviceState(int serial_port){
     strcat(buffer, "01"); // 공급업체
     strcat(buffer, "00"); // 장비분류
     strcat(buffer, "01"); // 장비번호
-    strcat(buffer, getCheckSum(buffer));
+
+    replace_str = getCheckSum(buffer);
+    //printf("replace_str : %s, %p\n", replace_str, replace_str);
+    //printf("buffer : %s, %d, %p\n", buffer, strlen(buffer), buffer);
+    //strncat(buffer, replace_str, 2);
+    strcat(buffer, replace_str);
     strcat(buffer, "CH");
+    //printf("buffer : %s, %d, %p\n", buffer, strlen(buffer), buffer);
 
     int write_res = write(serial_port, buffer, strlen(buffer));
     printf("write_length : %d\n", write_res);
@@ -176,7 +182,7 @@ void noSaveCutString(char *str){
 
     strncpy(etx, str, sizeof(etx)-1);
 
-    No_save_state = (NOSAVESTATE *)malloc(sizeof(NOSAVESTATE *));
+    No_save_state = (NOSAVESTATE *)malloc(sizeof(NOSAVESTATE));
     strcpy(No_save_state->m_stx, stx); // 값만 복사
     strcpy(No_save_state->m_data_len, data_len);
     strcpy(No_save_state->m_cmd, cmd);
@@ -190,25 +196,6 @@ void noSaveCutString(char *str){
     strcpy(No_save_state->m_check_sum, checksum);
     strcpy(No_save_state->m_etx, etx);
 
-    /* 연습용 */
-//    char str1[] = "BlockDMask. He is a smart man";
-//    char str2[] = "smart";
-//
-//    char *ptr = strstr(str1, str2);
-//    if(ptr!=NULL){
-//        printf("[str1] : %s\n", str1);
-//        printf("[ptr before] : %s\n", ptr);
-//
-//        strncpy(ptr, "idiot", 5);
-//
-//        printf("[str1] : %s\n", str1);
-//        printf("[ptr before] : %s\n", ptr);
-//
-//    }
-//    else {
-//        printf("null\n");
-//    }
-    /* 끝 */
     free(No_save_state);
 }
 
@@ -235,71 +222,54 @@ void operationCutString(char *str){
     char etx[3] = "\0";
 
     strncpy(stx, str, sizeof(stx)-1);
-    printf("stx : %s\n", stx);
     str += sizeof(stx)-1;
 
     strncpy(data_len, str, sizeof(data_len)-1);
-    printf("data_len : %s\n", data_len);
     str += sizeof(data_len)-1;
 
     strncpy(cmd, str, sizeof(cmd)-1);
-    printf("cmd : %s\n", cmd);
     str += sizeof(cmd)-1;
 
     strncpy(type, str, sizeof(type)-1);
-    printf("type : %s\n", type);
     str += sizeof(type)-1;
 
     strncpy(addr, str, sizeof(addr)-1);
-    printf("addr : %s\n", addr);
     str += sizeof(addr)-1;
 
     strncpy(state, str, sizeof(state)-1);
-    printf("state : %s\n", state);
     str += sizeof(state)-1;
 
     strncpy(hour, str, sizeof(hour)-1);
-    printf("hour : %s\n", hour);
     str += sizeof(hour)-1;
 
     strncpy(minute, str, sizeof(minute)-1);
-    printf("minute : %s\n", minute);
     str += sizeof(minute)-1;
 
     strncpy(second, str, sizeof(second)-1);
-    printf("second : %s\n", second);
     str += sizeof(second)-1;
 
     strncpy(current_cash, str, sizeof(current_cash)-1);
-    printf("current_cash : %s\n", current_cash);
     str += sizeof(current_cash)-1;
 
     strncpy(current_card, str, sizeof(current_card)-1);
-    printf("current_card : %s\n", current_card);
     str += sizeof(current_card)-1;
 
     strncpy(current_master, str, sizeof(current_master)-1);
-    printf("current_master : %s\n", current_master);
     str += sizeof(current_master)-1;
 
     strncpy(use_cash, str, sizeof(use_cash)-1);
-    printf("use_cash : %s\n", use_cash);
     str += sizeof(use_cash)-1;
 
     strncpy(use_card, str, sizeof(use_card)-1);
-    printf("use_card : %s\n", use_card);
     str += sizeof(use_card)-1;
 
     strncpy(use_master, str, sizeof(use_master)-1);
-    printf("use_master : %s\n", use_master);
     str += sizeof(use_master)-1;
 
     strncpy(use_time, str, sizeof(use_time)-1);
-    printf("use_time : %s\n", use_time);
     str += sizeof(use_time)-1;
 
     strncpy(card_num, str, sizeof(card_num)-1);
-    printf("card_num : %s\n", card_num);
     str += sizeof(card_num)-1;
 
     strncpy(check_sum, str, sizeof(check_sum)-1);
@@ -307,7 +277,7 @@ void operationCutString(char *str){
 
     strncpy(etx, str, sizeof(etx)-1);
 
-    Operation_state = (OPERATIONSTATE *)malloc(sizeof(OPERATIONSTATE *));
+    Operation_state = (OPERATIONSTATE *)malloc(sizeof(OPERATIONSTATE));
     strcpy(Operation_state->m_stx, stx); // 값만 복사
     strcpy(Operation_state->m_data_len, data_len);
     strcpy(Operation_state->m_cmd, cmd);
@@ -334,7 +304,17 @@ void operationCutString(char *str){
 void saveCutString(char *str){
     printf("def Savecutstring\n");
 
+    int arr[3] = {5,3,7};
+    int *iip;
+    iip = arr;
 
+    for(int i=0; i<3; i++){
+        printf("%d ", *(iip + i));
+    }
+    printf("\n");
+    for(int i=0; i<3; i++){
+        printf("%d ", *iip++);
+    }
 }
 
 char *getCheckSum(char *str){
@@ -348,8 +328,9 @@ char *getCheckSum(char *str){
     int mod = sum % 100;
     char checksum[3] = "\0"; // 배열에 널문자 자리와 널문자 꼭 포함
     sprintf(checksum, "%d", mod); // 바꿀문자열, "%기존포맷", 바꿀정수변수
-
+    //printf("getchecksum : %s, %p\n", checksum, checksum);
     char *ptr = checksum;
+    //printf("ptr         : %s, %p\n", ptr, ptr);
     return ptr;
 }
 
