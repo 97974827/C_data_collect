@@ -9,13 +9,14 @@
 
 int openSerial(char *);
 int closeSerial(int);
+void setTime();
 void getDeviceState(int);
 char *rePlaceString(char *);
 void noSaveCutString(char *);
-void operationCutString(char *);
-void saveCutString(char *);
+void operationCutString(char *, struct tm *);
+void selfSaveCutString(char *, struct tm *);
 char *getCheckSum(char *);
-
+char *timeToString(struct tm *);
 
 
 // 저장값 없는 동작상태 저장 구조체 - 카드충전기 변수 추가해야함
@@ -32,7 +33,7 @@ typedef struct _no_save_device_state{
     char m_version[5];
     char m_check_sum[3];
     char m_etx[3];
-}NOSAVESTATE;
+} NOSAVESTATE;
 
 // 동작 중일때 정보 저장 구조체
 typedef struct _operation_device_state{
@@ -55,11 +56,36 @@ typedef struct _operation_device_state{
     char m_card_num[9];
     char m_check_sum[3];
     char m_etx[3];
-}OPERATIONSTATE;
+} OPERATIONSTATE;
 
 // 저장값 있는 동작상태 저장 구조체
 typedef struct _save_device_state{
-
-}SAVESTATE;
+    char m_stx[3];
+    char m_data_len[4];
+    char m_cmd[3];
+    char m_type[3];
+    char m_addr[3];
+    char m_save_cnt[4];
+    char m_year[3];
+    char m_month[3];
+    char m_day[3];
+    char m_start_hour[3];
+    char m_start_minute[3];
+    char m_start_second[3];
+    char m_end_hour[3];
+    char m_end_minute[3];
+    char m_end_second[3];
+    char m_card_num[9];
+    char m_remain_money[6];
+    char m_use_card[5];
+    char m_use_cash[5];
+    char m_use_master[5];
+    char m_self_time[5];
+    char m_form_time[5];
+    char m_under_time[5];
+    char m_coating_time[5];
+    char m_check_sum[3];
+    char m_etx[3];
+} SAVESTATE;
 
 #endif //DATA_COLLECT_DEVICE_H

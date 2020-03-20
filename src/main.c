@@ -22,11 +22,12 @@ int main(int argc, char **argv) {
     //printf("MySQL 클라이언트 버전 : %s\n", mysql_get_client_info());
 
     serial_port = openSerial(SERIAL_PORT);
-    device_type = SELF;
+    //device_type = SELF;
     //printf("DEVICE_TYPE : %d\n", device_type);
 
     // 포트개방
     if(serial_port >= 0){
+        setTime(serial_port);
         getDeviceState(serial_port);
 
         serial_port = closeSerial(serial_port);
