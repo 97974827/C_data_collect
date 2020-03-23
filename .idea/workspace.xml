@@ -15,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/device.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/device.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/device.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,10 @@
       <workItem from="1584490330175" duration="26000" />
       <workItem from="1584490413160" duration="22575000" />
       <workItem from="1584577528832" duration="19620000" />
-      <workItem from="1584662817548" duration="22374000" />
+      <workItem from="1584662817548" duration="23345000" />
+      <workItem from="1584797755075" duration="55000" />
+      <workItem from="1584921669374" duration="4764000" />
+      <workItem from="1584943329753" duration="5040000" />
     </task>
     <servers />
   </component>
@@ -141,18 +143,18 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="1730" height="341" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1583994426172" />
-    <state x="641" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1584662939691">
+    <state x="641" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1584943330811">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="641" y="345" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584662939691" />
+    <state x="641" y="345" key="com.intellij.ide.util.TipDialog/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584943330811" />
     <state x="955" y="251" key="ftp.server.browser" timestamp="1583992011897">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="955" y="251" key="ftp.server.browser/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1583992011897" />
-    <state x="942" y="414" key="publish.login" timestamp="1584663093119">
+    <state x="942" y="414" key="publish.login" timestamp="1584943339695">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="942" y="414" key="publish.login/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584663093119" />
+    <state x="942" y="414" key="publish.login/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1584943339695" />
     <state x="728" y="243" key="run.anything.popup" timestamp="1584420060176">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>

@@ -9,12 +9,16 @@
 
 int openSerial(char *);
 int closeSerial(int);
-void setTime();
+void setTime(int);
 void getDeviceState(int);
 char *rePlaceString(char *);
 void noSaveCutString(char *);
 void operationCutString(char *, struct tm *);
 void selfSaveCutString(char *, struct tm *);
+void okSign(int);
+void getSelfConfig();
+void setSelfConfig();
+
 char *getCheckSum(char *);
 char *timeToString(struct tm *);
 

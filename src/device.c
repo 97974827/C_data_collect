@@ -68,7 +68,7 @@ void setTime(int serial_port){
 //    printf("hour : %s\n", hour);
 //    printf("minute : %s\n", minute);
 //    printf("second : %s\n", second);
-    printf("\nsetTime\n");
+
     strcpy(buffer, "GL029TS");
     strcat(buffer, "01"); // 공급업체
     strcat(buffer, "00"); // 장비분류
@@ -100,8 +100,6 @@ void setTime(int serial_port){
     }
     printf("Time RX : %s\n", buffer);
 
-
-
 }
 
 void getDeviceState(int serial_port){
@@ -122,12 +120,8 @@ void getDeviceState(int serial_port){
     strcat(buffer, "01"); // 장비번호
 
     replace_str = getCheckSum(buffer); // Err : 체크섬이 잘릴때가 있음
-    //printf("replace_str : %s, %p\n", replace_str, replace_str);
-    //printf("buffer : %s, %d, %p\n", buffer, strlen(buffer), buffer);
-    //strncat(buffer, replace_str, 2);
     strcat(buffer, replace_str);
     strcat(buffer, "CH");
-    //printf("buffer : %s, %d, %p\n", buffer, strlen(buffer), buffer);
 
     int write_res = write(serial_port, buffer, strlen(buffer));
     printf("write_length : %d\n", write_res);
@@ -135,7 +129,7 @@ void getDeviceState(int serial_port){
         perror("485 getDeviceState Write Err ");
         return;
     }
-    printf("TX : %s\n", buffer);
+    printf("state TX : %s\n", buffer);
     sleep(1);
     int read_res = read(serial_port, buffer, 255);
     printf("read_length  : %d\n", read_res);
@@ -143,7 +137,7 @@ void getDeviceState(int serial_port){
         perror("485 getDeviceState Read Err");
         return;
     }
-    printf("RX : %s\n", buffer);
+    printf("state RX : %s\n", buffer);
     replace_str = rePlaceString(buffer);
     printf("replace_str : %s\n", replace_str); // 수신 프로토콜 전체 문자 포인터 변수
 
@@ -193,13 +187,13 @@ void getDeviceState(int serial_port){
         strncpy(cmd_arr_value, cmd_search_ptr, 2);
         strncpy(etx_arr_value, etx_search_ptr, 2);
 
-        if (cmd_search_ptr!=NULL && etx_search_ptr!=NULL && check_search_ptr!=NULL){
-            if(strcmp(cmd_arr_value, "SR")==0 && strcmp(etx_arr_value, "CH")==0 && strcmp(check_arr_value, check_search_ptr)==0) {
+        if (cmd_search_ptr!=NULL && etx_search_ptr!=NULL){// && check_search_ptr!=NULL){
+            if(strcmp(cmd_arr_value, "SR")==0 && strcmp(etx_arr_value, "CH")==0){// && strcmp(check_arr_value, check_search_ptr)==0) {
                 operationCutString(replace_str, time_info);
-            } /*else {
+            } else {
                 perror("485 getDeviceState Err ");
                 return;
-            }*/
+            }
         }
         else {
             perror("485 getDeviceState Operation Null Pointer Exception ");
@@ -217,15 +211,16 @@ void getDeviceState(int serial_port){
         check_search_ptr = getCheckSum(replace_str);
         strncpy(check_arr_value, etx_search_ptr-2, 2);
 
-        if (cmd_search_ptr!=NULL && etx_search_ptr!=NULL && check_search_ptr!=NULL){
-            printf("cmd_arr_value   : %s\n", cmd_arr_value);
-            printf("etx_arr_value   : %s\n", etx_arr_value);
-            printf("check_arr_value : %s\n", check_arr_value);
-            printf("check_search_ptr: %s\n", check_search_ptr);
+        if (cmd_search_ptr!=NULL && etx_search_ptr!=NULL){
+//            printf("cmd_arr_value   : %s\n", cmd_arr_value);
+//            printf("etx_arr_value   : %s\n", etx_arr_value);
+//            printf("check_arr_value : %s\n", check_arr_value);
+//            printf("check_search_ptr: %s\n", check_search_ptr);
             int res = strcmp(check_arr_value, check_search_ptr);
-            printf("strcmp compare value : %d\n", res);
-            if(strcmp(cmd_arr_value, "SW")==0 && strcmp(etx_arr_value, "CH")==0 && strcmp(check_arr_value, check_search_ptr)==0) {
+            //printf("strcmp compare value : %d\n", res);
+            if(strcmp(cmd_arr_value, "SW")==0 && strcmp(etx_arr_value, "CH")==0) {
                 selfSaveCutString(replace_str, time_info);
+                okSign(serial_port);
             } //else {
 //                perror("485 getDeviceState Err ");
 //                return;
@@ -349,12 +344,15 @@ void operationCutString(char *str, struct tm *time_info){
     str += sizeof(state)-1;
 
     strncpy(hour, str, sizeof(hour)-1);
+    printf("start_time : %s시", hour);
     str += sizeof(hour)-1;
 
     strncpy(minute, str, sizeof(minute)-1);
+    printf(" %s분", minute);
     str += sizeof(minute)-1;
 
     strncpy(second, str, sizeof(second)-1);
+    printf(" %s초\n", second);
     str += sizeof(second)-1;
 
     strncpy(current_cash, str, sizeof(current_cash)-1);
@@ -476,26 +474,29 @@ void selfSaveCutString(char *str, struct tm *time_info){
 
 //    sprintf(start_hour, "%02d", time_info->tm_hour);
     strncpy(start_hour, str, sizeof(start_hour)-1);
-    printf("start_hour : %s\n", start_hour);
+    printf("시작시간 : %s시", start_hour);
     str += sizeof(start_hour)-1;
 
 //    sprintf(start_minute, "%02d", time_info->tm_min);
     strncpy(start_minute, str, sizeof(start_minute)-1);
-    printf("start_minute : %s\n", start_minute);
+    printf(" %s분", start_minute);
     str += sizeof(start_minute)-1;
 
 //    sprintf(start_second, "%02d", time_info->tm_sec);
     strncpy(start_second, str, sizeof(start_second)-1);
-    printf("start_second : %s\n", start_second);
+    printf(" %s초\n", start_second);
     str += sizeof(start_second)-1;
 
     strncpy(end_hour, str, sizeof(end_hour)-1);
+    printf("종료시간 : %s시", end_hour);
     str += sizeof(end_hour)-1;
 
     strncpy(end_minute, str, sizeof(end_minute)-1);
+    printf(" %s분", end_minute);
     str += sizeof(end_minute)-1;
 
     strncpy(end_second, str, sizeof(end_second)-1);
+    printf(" %s초\n", end_second);
     str += sizeof(end_second)-1;
 
     strncpy(card_num, str, sizeof(card_num)-1);
@@ -531,7 +532,6 @@ void selfSaveCutString(char *str, struct tm *time_info){
     strncpy(etx, str, sizeof(etx)-1);
 
 
-
     //printf("start-time : %s\n", timeToString(time_info));
 
 
@@ -565,7 +565,33 @@ void selfSaveCutString(char *str, struct tm *time_info){
     strcpy(Save_state->m_etx, etx);
 
 
+
+
     free(Save_state);
+}
+
+
+void okSign(int serial_port){
+    printf("\nOK SiGN\n");
+    char buf[255] = "\0";
+
+    strcpy(buf, "GL017OK");
+    strcat(buf, "01");  // 공급업체
+    strcat(buf, "00");  // 장비종류
+    strcat(buf, "01");  // 장비주소
+    char *ptr = getCheckSum(buf);
+    strcat(buf, ptr);
+    strcat(buf, "CH");
+
+    printf("len : %d\n", strlen(buf));
+    printf("buf : %s\n", buf);
+    int write_res = write(serial_port, buf, strlen(buf));
+    if(write_res < 0){
+        perror("OK SIGN Err ");
+        return;
+    }
+
+    sleep(1);
 }
 
 // checksum calculate
